@@ -1,6 +1,6 @@
 import random
 import time
-import pandas
+#import pandas
 
 def dice_throwing ():
     return (random.randrange(6))+1
@@ -171,26 +171,26 @@ print("***********************************************")
 
 who_is_the_winner()
 
-import pandas
+#import pandas
 
-l=[]
+#l=[]
 
-for i in range(0,100000):
-    d={}
-    player3 = player("random")
-    d["01_i"] = i
-    player3.generate_five_dice_throwing()
-    d["02_dice_value_1"] = player3.first
-    d["03_dice_value_2"] = player3.second
-    d["04_dice_value_3"] = player3.third
-    d["05_dice_value_4"] = player3.fourth
-    d["06_dice_value_5"] = player3.fifth
-    player3.print_dice_values()
-    player3.get_point()
-    d["07_combination"] = player3.combination_name
-    d["08_point"] = player3.point
-    l.append(d)
+#for i in range(0,100000):
+#    d={}
+#    player3 = player("random")
+#    d["01_i"] = i
+#    player3.generate_five_dice_throwing()
+#    d["02_dice_value_1"] = player3.first
+#    d["03_dice_value_2"] = player3.second
+#    d["04_dice_value_3"] = player3.third
+#    d["05_dice_value_4"] = player3.fourth
+#    d["06_dice_value_5"] = player3.fifth
+#    player3.print_dice_values()
+#    player3.get_point()
+#    d["07_combination"] = player3.combination_name
+#    d["08_point"] = player3.point
+#    l.append(d)
 
-df = pandas.DataFrame(l)
-df.to_csv("Output.csv")
-print(df)
+#df = pandas.DataFrame(l)
+#df.to_csv("Output.csv")
+#print(df)
