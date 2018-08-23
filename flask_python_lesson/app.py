@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 #from flask.ext.SQLAlchemy import SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
 from send_email import send_email
+from sqlalchemy.sql import func
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:Hellas1234@localhost/height_collector'
@@ -28,11 +29,15 @@ def success():
         height=request.form['height_name']
         print(email)
         print(height)
-        send_email(email, height)
         if db.session.query(Data).filter(Data.email_ == email).count() == 0:
             data=Data(height, email)
             db.session.add(data)
             db.session.commit()
+            average_height=db.session.query(func.avg(Data.height_)).scalar()
+            average_height=round(average_height,2)
+            count=db.session.query(Data.height_).count()
+            print(average_height)
+            send_email(email, height, average_height, count)
             return render_template("success.html")
     return render_template("index.html",
     text="Seems like we've got something from this email address already!")
